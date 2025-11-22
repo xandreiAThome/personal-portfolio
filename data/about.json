@@ -1,7 +1,8 @@
 {
   "about": {
     "intro": "I'm the Frontend Domain Lead at La Salle Computer Society and a 3rd-year Computer Science student at De La Salle University. I blend product-minded frontend engineering with systems thinking. I'm obsessed with homelabbing, self hosting various technologies, and building reliable developer environments that speed up iteration.",
-    "description": "I've worked on projects in natural language processing and computer vision, including handwriting recognition, machine translation, and object classification. I enjoy turning ML research into usable interfaces, prioritizing accessibility, performance, and clean UX. I love collaborating with fellow developers to implement modern and performant web applications. "
+    "description": "I've worked on projects in natural language processing and computer vision, including handwriting recognition, machine translation, and object classification. I enjoy turning ML research into usable interfaces, prioritizing accessibility, performance, and clean UX. I love collaborating with fellow developers to implement modern and performant web applications. ",
+    "resumeUrl": "/cv.pdf"
   },
   "skills": [
     {

@@ -1,6 +1,7 @@
 import { H2 } from "@/components/atoms/heading";
 import { Paragraph } from "@/components/atoms/text";
 import aboutData from "@/data/about.json";
+import { IoDownload } from "react-icons/io5";
 
 export function AboutSection() {
   return (
@@ -18,6 +19,19 @@ export function AboutSection() {
         <Paragraph className="mb-10 text-foreground/80">
           {aboutData.about.description}
         </Paragraph>
+
+        {aboutData.about.resumeUrl && (
+          <div className="mb-10">
+            <a
+              href={aboutData.about.resumeUrl}
+              download
+              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              <IoDownload size={18} />
+              Download Resume
+            </a>
+          </div>
+        )}
 
         <div>
           <h3 className="text-lg font-semibold mb-6 tracking-tight">
