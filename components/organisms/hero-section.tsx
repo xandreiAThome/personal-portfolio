@@ -30,7 +30,7 @@ export function HeroSection() {
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 2,
+        radius: Math.random() * 2.5,
         opacity: Math.random() * 0.5 + 0.5,
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
@@ -82,23 +82,30 @@ export function HeroSection() {
           <div className="text-6xl mb-4">✦</div>
         </div>
 
-        <div className="text-base text-white font-semibold font-sans mb-6 tracking-">
+        <div className="text-lg text-white font-semibold font-sans mb-6 tracking- hero-name">
           Hi! I&apos;m Ellexandrei Esponilla
         </div>
 
         <H1 className="mb-8 text-white">
-          Welcome to My{" "}
-          <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Digital Cosmos
+          {["Welcome", "to", "My"].map((word, i) => (
+            <span key={i} className="word-animate mr-2">
+              {word}
+            </span>
+          ))}
+          <span className="word-animate bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent mr-2 hero-gradient">
+            Digital
+          </span>
+          <span className="word-animate bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent hero-gradient">
+            Cosmos
           </span>
         </H1>
 
-        <Subtitle className="text-lg text-foreground/75 mb-12 max-w-2xl mx-auto">
+        <Subtitle className="text-lg text-foreground/75 mb-12 max-w-2xl mx-auto hero-subtitle">
           Exploring the intersection of design and development through
-          innovative digital experiences
+          innovation and problem solving
         </Subtitle>
 
-        <div className="flex gap-4 justify-center">
+        <div className="flex gap-4 justify-center hero-buttons">
           <a
             href="#projects"
             className="px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium text-sm tracking-tight"

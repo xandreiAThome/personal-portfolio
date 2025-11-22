@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "title": "Trip Management System",
+    "description": "Manages and tracks the sales of bus tickets and the position of the bus through GPS and WebSockets for real-time updates.",
+    "image": "/showcase/tms.jpg",
+    "tags": [
+      "WebSockets",
+      "GPS",
+      "Node.js",
+      "Next.js",
+      "TypeScript",
+      "Shadcn",
+      "Tailwind"
+    ],
+    "link": "https://github.com/xandreiAThome/trip-management-system",
+    "isPrivate": false
+  },
+  {
+    "id": "2",
+    "title": "Pyscribe",
+    "description": "A Python-TrOCR driven prototype device for scanning and digitizing antibiotic prescriptions with a fine-tuned model.",
+    "image": "https://plus.unsplash.com/premium_photo-1682464651356-3c6780eff00c?w=800&q=80",
+    "tags": ["Python", "TrOCR", "OCR", "ML"],
+    "link": "",
+    "isPrivate": true
+  },
+  {
+    "id": "3",
+    "title": "LSCS CMS",
+    "description": "Content Management System for La Salle Computer Society to manage events, members, and organizational content.",
+    "image": "/showcase/lscs-cms.png",
+    "tags": ["Next.js", "TypeScript", "React", "CMS", "Payload", "Tailwind"],
+    "link": "https://github.com/dlsu-lscs/lscs-cms",
+    "isPrivate": false
+  },
+  {
+    "id": "4",
+    "title": "LEAP Week 2025",
+    "description": "Website for LEAP Week 2025 - The Lasallian Enrichment Alternative Program celebrating personal growth, creativity, and learning. Theme: Soar Beyond Limits.",
+    "image": "/showcase/leap.jpg",
+    "tags": ["Next.js", "React", "TypeScript", "Tailwind"],
+    "link": "https://github.com/dlsu-lscs/leap25-web",
+    "isPrivate": false
+  }
+]

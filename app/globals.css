@@ -121,6 +121,7 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground;
@@ -144,10 +145,82 @@
       transform: translateY(-20px);
     }
   }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes shimmerLeftToRight {
+    0% {
+      filter: brightness(0.8);
+    }
+    25% {
+      filter: brightness(0.9);
+    }
+    50% {
+      filter: brightness(1.2);
+    }
+    75% {
+      filter: brightness(0.9);
+    }
+    100% {
+      filter: brightness(0.8);
+    }
+  }
   .star {
     animation: twinkle 3s infinite;
   }
   .float-animation {
     animation: float 6s ease-in-out infinite;
+  }
+  .word-animate {
+    display: inline-block;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  .word-animate:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .word-animate:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .word-animate:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .word-animate:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .word-animate:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .word-animate:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+  .hero-name {
+    animation: fadeInScale 0.8s ease-out;
+  }
+  .hero-subtitle {
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+  }
+  .hero-buttons {
+    animation: fadeInUp 0.8s ease-out 0.5s both;
+  }
+  .hero-gradient {
+    background-size: 200% 100%;
+    animation: shimmerLeftToRight 3s linear infinite;
   }
 }

@@ -1,0 +1,28 @@
+[
+  {
+    "name": "MY name",
+    "email": "xandrei37@gmail.com",
+    "message": "hi",
+    "createdAt": "2025-11-22T05:03:52.265Z"
+  },
+  {
+    "name": "lol",
+    "email": "xandrei37@gmail.com",
+    "message": "hi",
+    "createdAt": "2025-11-22T05:12:50.739Z"
+  },
+  {
+    "name": "hi",
+    "email": "test@example.com",
+    "message": "hi again",
+    "createdAt": "2025-11-22T05:34:25.090Z",
+    "ip": "::ffff:127.0.0.1"
+  },
+  {
+    "name": "test",
+    "email": "test@example.com",
+    "message": "h2",
+    "createdAt": "2025-11-22T05:37:38.103Z",
+    "ip": "::ffff:127.0.0.1"
+  }
+]

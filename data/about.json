@@ -1,0 +1,80 @@
+{
+  "about": {
+    "intro": "I'm the Frontend Domain Lead at La Salle Computer Society and a 3rd-year Computer Science student at De La Salle University. I blend product-minded frontend engineering with systems thinking. I'm obsessed with homelabbing, self hosting various technologies, and building reliable developer environments that speed up iteration.",
+    "description": "I've worked on projects in natural language processing and computer vision, including handwriting recognition, machine translation, and object classification. I enjoy turning ML research into usable interfaces, prioritizing accessibility, performance, and clean UX. I love collaborating with fellow developers to implement modern and performant web applications. "
+  },
+  "skills": [
+    {
+      "name": "React",
+      "badge": "https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"
+    },
+    {
+      "name": "React Query",
+      "badge": "https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=ReactQuery&logoColor=white"
+    },
+    {
+      "name": "Node.js",
+      "badge": "https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"
+    },
+    {
+      "name": "Python",
+      "badge": "https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue"
+    },
+    {
+      "name": "Next.js",
+      "badge": "https://img.shields.io/badge/next%20js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"
+    },
+    {
+      "name": "Docker",
+      "badge": "https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white"
+    },
+    {
+      "name": "Express.js",
+      "badge": "https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white"
+    },
+    {
+      "name": "Flask",
+      "badge": "https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white"
+    },
+    {
+      "name": "Firebase",
+      "badge": "https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black"
+    },
+    {
+      "name": "shadcn/ui",
+      "badge": "https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white"
+    },
+    {
+      "name": "Vite",
+      "badge": "https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E"
+    },
+    {
+      "name": "C",
+      "badge": "https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white"
+    },
+    {
+      "name": "TypeScript",
+      "badge": "https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"
+    },
+    {
+      "name": "React Native",
+      "badge": "https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"
+    },
+    {
+      "name": "Proxmox",
+      "badge": "https://img.shields.io/badge/Proxmox-E57000?style=for-the-badge&logo=proxmox&logoColor=white"
+    },
+    {
+      "name": "Java",
+      "badge": "https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white"
+    },
+    {
+      "name": "PyTorch",
+      "badge": "https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white"
+    },
+    {
+      "name": "Jupyter",
+      "badge": "https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white"
+    }
+  ]
+}

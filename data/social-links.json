@@ -1,0 +1,17 @@
+[
+  {
+    "label": "GitHub",
+    "url": "https://github.com/xandreiAThome",
+    "icon": "FaGithub"
+  },
+  {
+    "label": "LinkedIn",
+    "url": "https://www.linkedin.com/in/ellexandrei-esponilla/",
+    "icon": "CiLinkedin"
+  },
+  {
+    "label": "Email",
+    "url": "mailto:xandrei37@gmail.com",
+    "icon": "MdOutlineEmail"
+  }
+]

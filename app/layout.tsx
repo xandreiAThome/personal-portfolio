@@ -8,7 +8,7 @@ const _inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const _firaCode = Fira_Code({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: "Cosmic Portfolio | Your Journey Through the Digital Universe",
+  title: "Cosmic Portfolio | Ellexandrei Esponilla",
   description:
     "Explore my projects and journey through the cosmos of web development",
   generator: "v0.app",
