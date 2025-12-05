@@ -1,6 +1,4 @@
 import { NextResponse } from "next/server";
-import fs from "fs/promises";
-import path from "path";
 import nodemailer from "nodemailer";
 
 type Body = {
@@ -77,46 +75,6 @@ export async function POST(req: Request) {
       }
     }
 
-    const dir = path.join(process.cwd(), "data");
-    await fs.mkdir(dir, { recursive: true });
-
-    // Simple file-backed rate limiting per IP
-    const RATE_WINDOW = Number(process.env.RATE_LIMIT_WINDOW || "3600"); // seconds
-    const RATE_MAX = Number(process.env.RATE_LIMIT_MAX || "10");
-    const rateFile = path.join(dir, "rate-limit.json");
-    let rateObj: Record<string, number[]> = {};
-    try {
-      const raw = await fs.readFile(rateFile, "utf8");
-      rateObj = JSON.parse(raw) as Record<string, number[]>;
-    } catch (e) {
-      rateObj = {};
-    }
-
-    const now = Math.floor(Date.now() / 1000);
-    const windowStart = now - RATE_WINDOW;
-    const entries = (rateObj[ip] || []).filter((ts) => ts >= windowStart);
-    if (entries.length >= RATE_MAX) {
-      return NextResponse.json({ error: "Too many requests" }, { status: 429 });
-    }
-    entries.push(now);
-    rateObj[ip] = entries;
-    try {
-      await fs.writeFile(rateFile, JSON.stringify(rateObj, null, 2), "utf8");
-    } catch (e) {
-      console.warn("Failed to write rate-limit file", e);
-    }
-
-    const file = path.join(dir, "contact-submissions.json");
-
-    let arr: Array<Record<string, any>> = [];
-    try {
-      const existing = await fs.readFile(file, "utf8");
-      arr = JSON.parse(existing);
-      if (!Array.isArray(arr)) arr = [];
-    } catch (e) {
-      arr = [];
-    }
-
     const entry = {
       name,
       email,
@@ -124,10 +82,6 @@ export async function POST(req: Request) {
       createdAt: new Date().toISOString(),
       ip,
     };
-
-    arr.push(entry);
-
-    await fs.writeFile(file, JSON.stringify(arr, null, 2), "utf8");
 
     // Attempt to send an email notification if SMTP is configured
     const SMTP_HOST = process.env.SMTP_HOST;
@@ -157,10 +111,9 @@ export async function POST(req: Request) {
           html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p>${message}</p>`,
         });
 
-        return NextResponse.json({ ok: true, info: mailResult });
+        return NextResponse.json({ ok: true });
       } catch (mailErr) {
         console.error("Error sending contact email:", mailErr);
-        // Return an error response, but keep the submission saved on disk
         return NextResponse.json(
           { error: "Failed to send email" },
           { status: 500 }
@@ -168,11 +121,12 @@ export async function POST(req: Request) {
       }
     }
 
-    // SMTP not configured; return success because submission was saved
-    return NextResponse.json({
-      ok: true,
-      warning: "SMTP not configured; message saved only.",
-    });
+    return NextResponse.json(
+      {
+        error: "Email configuration missing",
+      },
+      { status: 500 }
+    );
   } catch (err) {
     console.error("/api/contact error:", err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
