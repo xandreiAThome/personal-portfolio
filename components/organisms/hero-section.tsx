@@ -121,7 +121,7 @@ export function HeroSection() {
           hover:scale-110 transition-transform duration-700 shrink-0"
           >
             <Image
-              src="/temp.webp"
+              src="/taguro.jpg"
               alt="Profile"
               width={224}
               height={224}

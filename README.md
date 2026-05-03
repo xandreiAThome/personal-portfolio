@@ -31,10 +31,7 @@ src/
 │   ├── molecules/       # Compound components
 │   └── organisms/       # Complex sections
 ├── data/                # JSON content (Projects, About, Socials)
-├── lib/                 # Shared utilities
-└── openspec/            # OpenSpec artifacts
-    ├── specs/           # Main specifications (Source of Truth)
-    └── changes/         # Feature delta specs and tasks
+└── lib/                 # Shared utilities
 ```
 
 ## Setup
@@ -70,11 +67,3 @@ src/
    ```bash
    npm run dev
    ```
-
-## Workflow
-
-Managed via **OpenSpec**. Requirements and architectural decisions live in `openspec/specs/`. Feature development uses delta specs in `openspec/changes/` which are archived and synced upon completion.
-
----
-
-Built by **Ellexandrei Esponilla**
