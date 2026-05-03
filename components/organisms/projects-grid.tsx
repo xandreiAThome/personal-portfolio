@@ -14,20 +14,29 @@ interface Project {
 
 export function ProjectsGrid() {
   return (
-    <section
-      id="projects"
-      className="py-20 px-6 bg-linear-to-b from-background via-background/50 to-background/30"
-    >
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
-          <H2 className="mb-4">Featured Projects</H2>
-          <p className="text-foreground/70 text-lg tracking-tight">
-            A curated selection of work spanning design, development, and
-            innovation
+    <section id="projects" className="py-40 px-6 nebula-bg">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-24 text-center">
+          <div className="flex flex-col items-center gap-4 mb-8">
+            <div className="flex items-center gap-2">
+              <span className="text-secondary tracking-widest text-xs uppercase font-mono font-bold">
+                Showcase
+              </span>
+              <div className="w-12 h-px bg-primary/30" />
+            </div>
+            <H2 className="text-5xl md:text-8xl tracking-tighter font-black">
+              Featured Projects
+            </H2>
+          </div>
+          <p className="text-foreground/70 text-xl md:text-2xl tracking-tight max-w-3xl mx-auto font-medium leading-relaxed">
+            A curated selection of work spanning{" "}
+            <span className="text-primary">design</span>,{" "}
+            <span className="text-secondary">development</span>, and innovation
+            in the digital cosmos.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-14">
           {projects.map((project) => (
             <ProjectCard
               key={project.id}

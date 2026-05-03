@@ -4,80 +4,70 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Refined color palette: sleek deep blue backgrounds, cyan primary, teal secondary, gold accent */
-  --background: oklch(0.06 0 0);
+  /* Refined "Nebula & Supernova" color palette using OKLCH */
+  --background: oklch(0.06 0.01 260); /* Very dark blue-tinted black */
   --foreground: oklch(0.98 0 0);
-  --card: oklch(0.1 0.02 265);
+  --card: oklch(0.12 0.03 260);
   --card-foreground: oklch(0.98 0 0);
   --popover: oklch(0.1 0.02 265);
   --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.55 0.19 200);
+  --primary: oklch(49.1% 0.27 292.581); /* Radiant Magenta/Purple (Supernova) */
   --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.5 0.18 180);
+  --secondary: oklch(0.6 0.2 250); /* Deep Electric Blue (Nebula) */
   --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.22 0.01 265);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.68 0.22 55);
+  --muted: oklch(0.2 0.05 260);
+  --muted-foreground: oklch(0.7 0.05 260);
+  --accent: oklch(0.85 0.15 190); /* Glowing Cyan/Teal (Starlight) */
   --accent-foreground: oklch(0.06 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.15 0.02 265);
-  --input: oklch(0.12 0.02 265);
-  --ring: oklch(0.55 0.19 200);
-  --chart-1: oklch(0.68 0.22 55);
-  --chart-2: oklch(0.55 0.19 200);
-  --chart-3: oklch(0.5 0.18 180);
-  --chart-4: oklch(0.6 0.16 270);
-  --chart-5: oklch(0.52 0.17 290);
+  --border: oklch(0.18 0.04 260);
+  --input: oklch(0.15 0.04 260);
+  --ring: oklch(0.7 0.25 310);
   --radius: 0.5rem;
-  --sidebar: oklch(0.08 0.01 265);
-  --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(0.55 0.19 200);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.68 0.22 55);
-  --sidebar-accent-foreground: oklch(0.06 0 0);
-  --sidebar-border: oklch(0.15 0.02 265);
-  --sidebar-ring: oklch(0.55 0.19 200);
+
+  /* Nebula Gradients */
+  --nebula-gradient: linear-gradient(
+    135deg,
+    oklch(0.15 0.1 300) 0%,
+    oklch(0.06 0.01 260) 100%
+  );
+  --supernova-glow: radial-gradient(
+    circle at center,
+    oklch(0.7 0.25 310 / 0.15) 0%,
+    transparent 70%
+  );
+
+  /* Solar Colors for the Sun */
+  --sun-core: oklch(0.8 0.2 60);
+  --sun-outer: oklch(0.6 0.25 50);
+
+  /* Responsive Orbit Radii */
+  --orbit-1: 220px;
+  --orbit-2: 380px;
+  --orbit-3: 540px;
+  --orbit-4: 700px;
+  --orbit-5: 860px;
+  --orbit-6: 1020px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --orbit-1: 200px;
+    --orbit-2: 280px;
+    --orbit-3: 360px;
+    --orbit-4: 440px;
+    --orbit-5: 520px;
+    --orbit-6: 600px;
+  }
 }
 
 .dark {
-  /* Dark mode values (primary theme) */
-  --background: oklch(0.06 0 0);
+  --background: oklch(0.06 0.01 260);
   --foreground: oklch(0.98 0 0);
-  --card: oklch(0.1 0.02 265);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.1 0.02 265);
-  --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.55 0.19 200);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.5 0.18 180);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.22 0.01 265);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.68 0.22 55);
-  --accent-foreground: oklch(0.06 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.15 0.02 265);
-  --input: oklch(0.12 0.02 265);
-  --ring: oklch(0.55 0.19 200);
-  --chart-1: oklch(0.68 0.22 55);
-  --chart-2: oklch(0.55 0.19 200);
-  --chart-3: oklch(0.5 0.18 180);
-  --chart-4: oklch(0.6 0.16 270);
-  --chart-5: oklch(0.52 0.17 290);
-  --sidebar: oklch(0.08 0.01 265);
-  --sidebar-foreground: oklch(0.98 0 0);
-  --sidebar-primary: oklch(0.55 0.19 200);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.68 0.22 55);
-  --sidebar-accent-foreground: oklch(0.06 0 0);
-  --sidebar-border: oklch(0.15 0.02 265);
-  --sidebar-ring: oklch(0.55 0.19 200);
 }
 
 @theme inline {
-  /* Updated to Inter font for modern, sleek aesthetic */
   --font-sans: "Inter", "Inter Fallback";
   --font-mono: "Fira Code", "Fira Code Fallback";
   --color-background: var(--background);
@@ -99,23 +89,6 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 @layer base {
@@ -124,103 +97,85 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-white;
+    background-image: var(--supernova-glow);
+    background-attachment: fixed;
   }
-  /* Kept starfield and cosmic animations */
+
+  /* Cosmic Animations */
   @keyframes twinkle {
     0%,
     100% {
       opacity: 0.3;
+      transform: scale(1);
     }
     50% {
       opacity: 1;
+      transform: scale(1.1);
     }
   }
-  @keyframes float {
+
+  @keyframes sun-glow {
     0%,
     100% {
-      transform: translateY(0px);
+      box-shadow:
+        0 0 30px 5px var(--primary),
+        0 0 60px 10px var(--secondary);
     }
     50% {
-      transform: translateY(-20px);
+      box-shadow:
+        0 0 50px 10px var(--primary),
+        0 0 90px 20px var(--secondary);
     }
   }
+
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  @keyframes fadeInScale {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  @keyframes shimmerLeftToRight {
-    0% {
-      filter: brightness(0.8);
-    }
-    25% {
-      filter: brightness(0.9);
-    }
-    50% {
-      filter: brightness(1.2);
-    }
-    75% {
-      filter: brightness(0.9);
-    }
-    100% {
-      filter: brightness(0.8);
-    }
-  }
+
   .star {
     animation: twinkle 3s infinite;
   }
-  .float-animation {
-    animation: float 6s ease-in-out infinite;
+  .sun-element {
+    animation: sun-glow 5s ease-in-out infinite;
   }
-  .word-animate {
-    display: inline-block;
-    animation: fadeInUp 0.6s ease-out forwards;
+  .orbit-container {
+    animation: orbit linear infinite;
   }
-  .word-animate:nth-child(1) {
-    animation-delay: 0.1s;
+  .orbit-item {
+    animation: orbit linear infinite reverse;
   }
-  .word-animate:nth-child(2) {
-    animation-delay: 0.2s;
+
+  /* Section Nebula Effects */
+  .nebula-bg {
+    background: var(--nebula-gradient);
+    position: relative;
   }
-  .word-animate:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  .word-animate:nth-child(4) {
-    animation-delay: 0.4s;
-  }
-  .word-animate:nth-child(5) {
-    animation-delay: 0.5s;
-  }
-  .word-animate:nth-child(6) {
-    animation-delay: 0.6s;
-  }
-  .hero-name {
-    animation: fadeInScale 0.8s ease-out;
-  }
-  .hero-subtitle {
-    animation: fadeInUp 0.8s ease-out 0.3s both;
-  }
-  .hero-buttons {
-    animation: fadeInUp 0.8s ease-out 0.5s both;
-  }
-  .hero-gradient {
-    background-size: 200% 100%;
-    animation: shimmerLeftToRight 3s linear infinite;
+  .nebula-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 70% 30%,
+      oklch(0.6 0.2 250 / 0.05),
+      transparent 50%
+    );
+    pointer-events: none;
   }
 }

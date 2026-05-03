@@ -38,7 +38,7 @@ export function Navigation() {
 
     const observer = new IntersectionObserver(
       observerCallback,
-      observerOptions
+      observerOptions,
     );
 
     // Observe all sections
@@ -55,14 +55,15 @@ export function Navigation() {
   }, [navItems]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="text-xl font-semithin text-primary">
-          xandreiat.homes ✦
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-background/60 backdrop-blur-2xl">
+      <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+        <div className="text-lg font-bold tracking-tighter text-foreground group cursor-pointer flex items-center gap-2">
+          <span className="text-primary">✦</span>
+          <span>xandreiat.homes</span>
         </div>
 
         {/* Nav Links */}
-        <div className="sm:flex items-center gap-6 hidden">
+        <div className="sm:flex items-center gap-10 hidden">
           {navItems.map((item) => (
             <NavLink
               key={item.href}
@@ -72,14 +73,18 @@ export function Navigation() {
             />
           ))}
         </div>
+
         <div className="sm:hidden block">
           <DropdownMenu>
-            <DropdownMenuTrigger>
-              <IoIosMenu />
+            <DropdownMenuTrigger className="p-2 rounded-lg bg-white/5 border border-white/10 text-foreground">
+              <IoIosMenu size={20} />
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className="bg-background/95 backdrop-blur-xl border-white/10 min-w-[12rem]">
               {navItems.map((item) => (
-                <DropdownMenuItem className="w-full" key={item.href}>
+                <DropdownMenuItem
+                  className="w-full focus:bg-white/10"
+                  key={item.href}
+                >
                   <NavLink
                     href={item.href}
                     label={item.label}
