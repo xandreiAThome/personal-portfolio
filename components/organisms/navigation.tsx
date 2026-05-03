@@ -2,6 +2,7 @@
 
 import { NavLink } from "@/components/molecules/nav-link";
 import { useState, useEffect } from "react";
+import { motion } from "motion/react";
 import { IoIosMenu } from "react-icons/io";
 import {
   DropdownMenu,
@@ -55,7 +56,12 @@ export function Navigation() {
   }, [navItems]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-background/60 backdrop-blur-2xl">
+    <motion.nav
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-background/60 backdrop-blur-2xl"
+    >
       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
         <div className="text-lg font-bold tracking-tighter text-foreground group cursor-pointer flex items-center gap-2">
           <span className="text-primary">✦</span>
@@ -96,6 +102,6 @@ export function Navigation() {
           </DropdownMenu>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }

@@ -2,6 +2,7 @@
 
 import type React from "react";
 import { CiLinkedin } from "react-icons/ci";
+import { motion } from "motion/react";
 import { H2 } from "@/components/atoms/heading";
 import { Paragraph } from "@/components/atoms/text";
 import { useState, useEffect, useRef } from "react";
@@ -42,7 +43,7 @@ export function ContactSection() {
           // render returns an integer widget id
           widgetIdRef.current = (window as any).turnstile.render(
             turnstileRef.current,
-            { sitekey: siteKey }
+            { sitekey: siteKey },
           );
         }
       } catch (e) {
@@ -120,19 +121,37 @@ export function ContactSection() {
       className="py-32 px-6 bg-linear-to-b from-background/40 to-background"
     >
       <div className="max-w-5xl mx-auto">
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-primary tracking-widest text-[10px] uppercase font-mono">Engagement</span>
-          <div className="w-8 h-px bg-white/10" />
-        </div>
-        <H2 className="mb-6 text-4xl md:text-5xl tracking-tighter">Let's Connect</H2>
-        <Paragraph className="mb-16 text-lg md:text-xl text-foreground/60 max-w-2xl leading-relaxed">
-          Interested in collaborating or want to discuss your next cosmic
-          project? Feel free to reach out via the form or social links.
-        </Paragraph>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-primary tracking-widest text-[10px] uppercase font-mono">
+              Engagement
+            </span>
+            <div className="w-8 h-px bg-white/10" />
+          </div>
+          <H2 className="mb-6 text-4xl md:text-5xl tracking-tighter">
+            Let&apos;s Connect
+          </H2>
+          <Paragraph className="mb-16 text-lg md:text-xl text-foreground/60 max-w-2xl leading-relaxed">
+            Interested in collaborating or want to discuss your next cosmic
+            project? Feel free to reach out via the form or social links.
+          </Paragraph>
+        </motion.div>
 
         <div className="grid md:grid-cols-[1.5fr_1fr] gap-12 md:gap-20">
           {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <motion.form
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            onSubmit={handleSubmit}
+            className="space-y-6"
+          >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-[10px] uppercase font-mono tracking-widest text-foreground/40 px-1">
@@ -180,7 +199,7 @@ export function ContactSection() {
                 required
               />
             </div>
-            
+
             {/* Honeypot field - hide from users but present for bots to fill */}
             <div className="hidden" aria-hidden>
               <label htmlFor="website" className="sr-only">
@@ -225,10 +244,16 @@ export function ContactSection() {
                 </p>
               )}
             </div>
-          </form>
+          </motion.form>
 
           {/* Social Links */}
-          <div className="space-y-8">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="space-y-8"
+          >
             <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-foreground/40">
               Orbital Links
             </h3>
@@ -243,23 +268,30 @@ export function ContactSection() {
                     <span className="p-2.5 rounded-lg bg-white/5 text-primary group-hover:scale-110 transition-transform">
                       {iconMap[link.icon]}
                     </span>
-                    <span className="text-sm font-medium tracking-tight group-hover:text-primary transition-colors">{link.label}</span>
+                    <span className="text-sm font-medium tracking-tight group-hover:text-primary transition-colors">
+                      {link.label}
+                    </span>
                   </div>
                   <div className="w-1.5 h-1.5 rounded-full bg-white/10 group-hover:bg-primary transition-colors shadow-[0_0_8px_transparent] group-hover:shadow-primary/50" />
                 </a>
               ))}
             </div>
-            
+
             <div className="pt-8 border-t border-white/5">
-              <p className="text-[10px] text-foreground/30 font-mono leading-loose">
-                LOC: MANILA, PH <br/>
-                TIME: {new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })} PHT
+              <p className="sm:text-lg text-base text-foreground/40 font-mono leading-loose">
+                LOC: MANILA, PH <br />
+                TIME:{" "}
+                {new Date().toLocaleTimeString("en-US", {
+                  hour12: false,
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}{" "}
+                PHT
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-

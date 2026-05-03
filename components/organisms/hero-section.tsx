@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { motion } from "motion/react";
 import { H1 } from "@/components/atoms/heading";
 import { Subtitle } from "@/components/atoms/text";
 import {
@@ -10,7 +11,6 @@ import {
   SiNodedotjs,
   SiTailwindcss,
   SiDocker,
-  SiPython,
 } from "react-icons/si";
 
 const PLANETS = [
@@ -130,7 +130,12 @@ export function HeroSection() {
       <canvas ref={canvasRef} className="absolute inset-0" />
 
       {/* Solar System Visuals */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
+      >
         {/* Container for orbits: w-0 h-0 prevents it from pushing layout, scale handles responsiveness */}
         <div className="relative w-0 h-0 flex items-center justify-center scale-[0.5] sm:scale-75 md:scale-70 translate-y-[-8%] sm:translate-y-0">
           {PLANETS.map((planet, i) => (
@@ -183,35 +188,74 @@ export function HeroSection() {
             <div className="absolute inset-0 bg-linear-to-tr from-primary/30 via-accent/10 to-secondary/30 mix-blend-overlay rounded-full" />
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <div className="relative z-30 min-h-screen text-center px-6 max-w-5xl mx-auto w-full">
         <div className="top-20 relative">
-          <div className="mb-3 inline-block">
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
+            className="mb-3 inline-block"
+          >
             <div className="text-5xl text-primary animate-pulse rounded-full">
               ✦
             </div>
-          </div>
-          <div className="text-2xl text-white font-bold mb-6 tracking-tight hero-name">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-2xl text-white font-bold mb-6 tracking-tight hero-name"
+          >
             Ellexandrei Esponilla
-          </div>
+          </motion.div>
           <H1 className="mb-12 font-medium text-white/80 w-full text-3xl md:text-4xl tracking-tighter">
-            Welcome to my{" "}
-            <span className="word-animate font-bold text-4xl md:text-5xl bg-linear-to-r from-primary via-accent to-secondary bg-clip-text text-transparent mr-4 hero-gradient filter drop-shadow-[0_0_10px_rgba(255,0,255,0.3)]">
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="inline-block mr-3"
+            >
+              Welcome to my
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="word-animate inline-block font-bold text-4xl md:text-5xl bg-linear-to-r from-primary via-accent to-secondary bg-clip-text text-transparent mr-4 hero-gradient filter drop-shadow-[0_0_10px_rgba(255,0,255,0.3)]"
+            >
               Digital
-            </span>
-            <span className="word-animate font-bold text-4xl md:text-5xl bg-linear-to-r from-primary via-accent to-secondary bg-clip-text text-transparent hero-gradient filter drop-shadow-[0_0_10px_rgba(0,255,255,0.3)]">
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="word-animate inline-block font-bold text-4xl md:text-5xl bg-linear-to-r from-primary via-accent to-secondary bg-clip-text text-transparent hero-gradient filter drop-shadow-[0_0_10px_rgba(0,255,255,0.3)]"
+            >
               Cosmos
-            </span>
+            </motion.span>
           </H1>
         </div>
         <div className="bottom-10 absolute left-0 right-0">
-          <Subtitle className="text-base text-foreground/70 mb-12 max-w-xl mx-auto hero-subtitle font-medium leading-relaxed">
-            Crafting high-performance digital experiences at the intersection of
-            <span className="text-violet-600 mx-1">Art</span> and{" "}
-            <span className="text-secondary mx-1">Engineering</span>.
-          </Subtitle>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center hero-buttons px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+          >
+            <Subtitle className="text-base text-foreground/70 mb-12 max-w-xl mx-auto hero-subtitle font-medium leading-relaxed">
+              Crafting high-performance digital experiences at the intersection
+              of
+              <span className="text-violet-600 mx-1">Art</span> and{" "}
+              <span className="text-secondary mx-1">Engineering</span>.
+            </Subtitle>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center hero-buttons px-8"
+          >
             <a
               href="#projects"
               className="px-10 py-4 bg-primary text-white rounded-full hover:bg-primary/80 transition-all hover:scale-105 font-bold text-sm tracking-widest uppercase shadow-xl shadow-primary/30"
@@ -224,7 +268,7 @@ export function HeroSection() {
             >
               Get in Touch
             </a>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
