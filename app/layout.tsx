@@ -11,19 +11,6 @@ export const metadata: Metadata = {
   title: "Cosmic Portfolio | Ellexandrei Esponilla",
   description:
     "Explore my projects and journey through the cosmos of web development",
-  icons: {
-    icon: [
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
-  },
 };
 
 export default function RootLayout({
@@ -33,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans antialiased overflow-x-hidden w-full`}>
+      <body
+        className={`${_inter.variable} ${_firaCode.variable} font-sans antialiased overflow-x-hidden w-full`}
+      >
         {children}
         <Analytics />
       </body>

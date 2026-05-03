@@ -1,7 +1,7 @@
 "use client";
 
 import { NavLink } from "@/components/molecules/nav-link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "motion/react";
 import { IoIosMenu } from "react-icons/io";
 import {
@@ -14,12 +14,32 @@ import {
 export function Navigation() {
   const [activeSection, setActiveSection] = useState("#home");
 
-  const navItems = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
-  ];
+  const navItems = useMemo(
+    () => [
+      { href: "#home", label: "Home" },
+      { href: "#about", label: "About" },
+      { href: "#projects", label: "Projects" },
+      { href: "#contact", label: "Contact" },
+    ],
+    [],
+  );
+
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    e.preventDefault();
+    const targetId = href.replace("#", "");
+    const elem = document.getElementById(targetId);
+    if (elem) {
+      elem.scrollIntoView({
+        behavior: "smooth",
+      });
+      // Update hash in URL without jumping
+      window.history.pushState(null, "", href);
+      setActiveSection(href);
+    }
+  };
 
   useEffect(() => {
     // Create intersection observer to track which section is in view
@@ -76,6 +96,12 @@ export function Navigation() {
               href={item.href}
               label={item.label}
               active={activeSection === item.href}
+              onClick={(e) =>
+                handleScroll(
+                  e as React.MouseEvent<HTMLAnchorElement>,
+                  item.href,
+                )
+              }
             />
           ))}
         </div>
@@ -85,7 +111,7 @@ export function Navigation() {
             <DropdownMenuTrigger className="p-2 rounded-lg bg-white/5 border border-white/10 text-foreground">
               <IoIosMenu size={20} />
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-background/95 backdrop-blur-xl border-white/10 min-w-[12rem]">
+            <DropdownMenuContent className="bg-background/95 backdrop-blur-xl border-white/10 min-w-48">
               {navItems.map((item) => (
                 <DropdownMenuItem
                   className="w-full focus:bg-white/10"
@@ -95,6 +121,12 @@ export function Navigation() {
                     href={item.href}
                     label={item.label}
                     active={activeSection === item.href}
+                    onClick={(e) =>
+                      handleScroll(
+                        e as React.MouseEvent<HTMLAnchorElement>,
+                        item.href,
+                      )
+                    }
                   />
                 </DropdownMenuItem>
               ))}

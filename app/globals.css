@@ -119,13 +119,13 @@
     0%,
     100% {
       box-shadow:
-        0 0 30px 5px var(--primary),
-        0 0 60px 10px var(--secondary);
+        0 0 30px 5px var(--sun-core),
+        0 0 60px 10px var(--sun-outer);
     }
     50% {
       box-shadow:
-        0 0 50px 10px var(--primary),
-        0 0 90px 20px var(--secondary);
+        0 0 50px 10px var(--sun-core),
+        0 0 90px 20px var(--sun-outer);
     }
   }
 

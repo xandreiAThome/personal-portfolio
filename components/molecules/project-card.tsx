@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { H3 } from "@/components/atoms/heading";
 import { Paragraph } from "@/components/atoms/text";
 import { Badge } from "@/components/atoms/badge";
@@ -37,9 +38,11 @@ export function ProjectCard({
 
       {/* Project Image */}
       <div className="relative h-60 overflow-hidden bg-muted shrink-0">
-        <img
+        <Image
           src={image || "/placeholder.svg"}
           alt={title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-in-out"
         />
         <div className="absolute inset-0 bg-linear-to-t from-background/95 via-background/10 to-transparent" />
@@ -63,7 +66,7 @@ export function ProjectCard({
             {title}
           </H3>
         </div>
-        <Paragraph className="text-foreground/70 mb-8 text-sm leading-relaxed line-clamp-3">
+        <Paragraph className="text-foreground/70 mb-8 text-sm leading-relaxed line-clamp-4">
           {description}
         </Paragraph>
 

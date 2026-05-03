@@ -3,12 +3,25 @@
 import type React from "react";
 import { CiLinkedin } from "react-icons/ci";
 import { motion } from "motion/react";
+import { Starfield } from "@/components/atoms/starfield";
 import { H2 } from "@/components/atoms/heading";
 import { Paragraph } from "@/components/atoms/text";
 import { useState, useEffect, useRef } from "react";
 import { FaGithub } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import socialLinksData from "@/data/social-links.json";
+
+type TurnstileAPI = {
+  render: (container: HTMLElement, options: { sitekey: string }) => string;
+  getResponse: (widgetId: string) => string;
+  reset: (widgetId: string) => void;
+};
+
+declare global {
+  interface Window {
+    turnstile?: TurnstileAPI;
+  }
+}
 
 const iconMap: Record<string, React.ReactNode> = {
   FaGithub: <FaGithub />,
@@ -24,6 +37,14 @@ export function ContactSection() {
     website: "", // honeypot
   });
 
+  const [currentTime, setCurrentTime] = useState(new Date());
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error"
   >("idle");
@@ -31,27 +52,27 @@ export function ContactSection() {
   const [feedback, setFeedback] = useState<string | null>(null);
 
   const turnstileRef = useRef<HTMLDivElement | null>(null);
-  const widgetIdRef = useRef<number | null>(null);
+  const widgetIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITEKEY;
     if (!siteKey) return;
 
     function renderWidget() {
+      if (!siteKey) return;
       try {
-        if ((window as any).turnstile && turnstileRef.current) {
+        if (window.turnstile && turnstileRef.current) {
           // render returns an integer widget id
-          widgetIdRef.current = (window as any).turnstile.render(
-            turnstileRef.current,
-            { sitekey: siteKey },
-          );
+          widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+            sitekey: siteKey,
+          });
         }
       } catch (e) {
         console.warn("Turnstile render error", e);
       }
     }
 
-    if ((window as any).turnstile) {
+    if (window.turnstile) {
       renderWidget();
     } else {
       const s = document.createElement("script");
@@ -72,9 +93,9 @@ export function ContactSection() {
       const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITEKEY;
       let token: string | null = null;
 
-      if (siteKey && (window as any).turnstile && widgetIdRef.current != null) {
+      if (siteKey && window.turnstile && widgetIdRef.current != null) {
         try {
-          token = (window as any).turnstile.getResponse(widgetIdRef.current);
+          token = window.turnstile.getResponse(widgetIdRef.current);
         } catch (e) {
           console.warn("Turnstile getResponse error", e);
         }
@@ -102,10 +123,10 @@ export function ContactSection() {
 
       // reset Turnstile widget if available
       try {
-        if ((window as any).turnstile && widgetIdRef.current != null) {
-          (window as any).turnstile.reset(widgetIdRef.current);
+        if (window.turnstile && widgetIdRef.current != null) {
+          window.turnstile.reset(widgetIdRef.current);
         }
-      } catch (e) {
+      } catch {
         // ignore reset errors
       }
     } catch (err) {
@@ -118,9 +139,10 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-32 px-6 bg-linear-to-b from-background/40 to-background"
+      className="relative py-32 px-6 bg-linear-to-b from-background/40 to-background overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto">
+      <Starfield className="absolute inset-0 opacity-60 " />
+      <div className="max-w-5xl mx-auto relative z-30">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -128,7 +150,7 @@ export function ContactSection() {
           transition={{ duration: 0.8 }}
         >
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-primary tracking-widest text-[10px] uppercase font-mono">
+            <span className="text-secondary tracking-widest text-[10px] uppercase font-mono">
               Engagement
             </span>
             <div className="w-8 h-px bg-white/10" />
@@ -164,7 +186,7 @@ export function ContactSection() {
                   onChange={(e) =>
                     setFormState({ ...formState, name: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-primary/50 focus:bg-white/[0.08] transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-primary/50 focus:bg-white/8 transition-all"
                   required
                 />
               </div>
@@ -179,7 +201,7 @@ export function ContactSection() {
                   onChange={(e) =>
                     setFormState({ ...formState, email: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-primary/50 focus:bg-white/[0.08] transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-primary/50 focus:bg-white/8 transition-all"
                   required
                 />
               </div>
@@ -195,7 +217,7 @@ export function ContactSection() {
                 onChange={(e) =>
                   setFormState({ ...formState, message: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-primary/50 focus:bg-white/[0.08] transition-all resize-none"
+                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-primary/50 focus:bg-white/8 transition-all resize-none"
                 required
               />
             </div>
@@ -262,7 +284,7 @@ export function ContactSection() {
                 <a
                   key={link.label}
                   href={link.url}
-                  className="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-primary/30 hover:bg-white/[0.08] transition-all group"
+                  className="flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-primary/30 hover:bg-white/8 transition-all group"
                 >
                   <div className="flex items-center gap-4">
                     <span className="p-2.5 rounded-lg bg-white/5 text-primary group-hover:scale-110 transition-transform">
@@ -281,11 +303,16 @@ export function ContactSection() {
               <p className="sm:text-lg text-base text-foreground/40 font-mono leading-loose">
                 LOC: MANILA, PH <br />
                 TIME:{" "}
-                {new Date().toLocaleTimeString("en-US", {
-                  hour12: false,
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}{" "}
+                {(() => {
+                  const timeStr = currentTime.toLocaleString("en-US", {
+                    hour: "numeric",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: true,
+                    timeZone: "Asia/Manila",
+                  });
+                  return `${timeStr}`;
+                })()}{" "}
                 PHT
               </p>
             </div>

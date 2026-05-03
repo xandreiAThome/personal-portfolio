@@ -1,7 +1,7 @@
 {
   "about": {
-    "intro": "I'm the Frontend Domain Lead at La Salle Computer Society and a 3rd-year Computer Science student at De La Salle University. I blend product-minded frontend engineering with systems thinking. I'm obsessed with homelabbing, self hosting various technologies, and building reliable developer environments that speed up iteration.",
-    "description": "I've worked on projects in natural language processing and computer vision, including handwriting recognition, machine translation, and object classification. I enjoy turning ML research into usable interfaces, prioritizing accessibility, performance, and clean UX. I love collaborating with fellow developers to implement modern and performant web applications. ",
+    "intro": "I'm the Frontend Domain Lead at La Salle Computer Society and a 3rd-year Computer Science student at De La Salle University. I blend product-minded fullstack engineering with systems thinking.",
+    "description": "I've worked on projects in natural language processing and computer vision, including handwriting recognition, machine translation, and object classification. I'm obsessed with homelabbing, self hosting various technologies, and building reliable developer environments that speed up iteration. And I enjoy collaborating with fellow developers to implement modern and performant web applications. ",
     "resumeUrl": "/showcase/cv.pdf"
   },
   "skills": [
@@ -32,6 +32,10 @@
     {
       "name": "Express.js",
       "badge": "https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white"
+    },
+    {
+      "name": "NestJS",
+      "badge": "https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white"
     },
     {
       "name": "Flask",
@@ -76,6 +80,10 @@
     {
       "name": "Jupyter",
       "badge": "https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white"
+    },
+    {
+      "name": "PostgreSQL",
+      "badge": "https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white"
     }
   ]
 }

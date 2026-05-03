@@ -1,10 +1,18 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
+import Image from "next/image";
 import { H2 } from "@/components/atoms/heading";
 import { Paragraph } from "@/components/atoms/text";
 import aboutData from "@/data/about.json";
 import { IoDownload } from "react-icons/io5";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export function AboutSection() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -80,10 +88,13 @@ export function AboutSection() {
                   }}
                   className="relative group"
                 >
-                  <img
+                  <Image
                     src={skill.badge}
                     alt={skill.name}
-                    className="h-8 md:h-10 transition-all duration-500 hover:scale-125 hover:-translate-y-2"
+                    width={60}
+                    height={40}
+                    unoptimized={true}
+                    className="h-8 md:h-10 w-auto transition-all duration-500 hover:scale-125 hover:-translate-y-2"
                   />
                   <div className="absolute -inset-2 bg-primary/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 </motion.div>
@@ -92,63 +103,56 @@ export function AboutSection() {
           </motion.div>
 
           {aboutData.about.resumeUrl && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="pt-12 flex flex-col items-center gap-4"
-            >
-              <button
-                onClick={() => setIsResumeOpen(true)}
-                className="inline-flex items-center gap-4 px-10 py-4 bg-primary text-white rounded-full hover:bg-primary/80 transition-all hover:scale-105 font-bold text-sm tracking-widest uppercase shadow-lg shadow-primary/20"
-              >
-                View Resume
-              </button>
-              <a
-                href={aboutData.about.resumeUrl}
-                download
-                className="inline-flex items-center gap-4 px-10 py-4 bg-secondary text-white rounded-full hover:bg-secondary/80 transition-all hover:scale-105 font-bold text-sm tracking-widest uppercase shadow-lg shadow-secondary/20"
-              >
-                <IoDownload size={20} />
-                Download Resume
-              </a>
-            </motion.div>
-          )}
-
-          <AnimatePresence>
-            {isResumeOpen && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
-                onClick={() => setIsResumeOpen(false)}
-              >
+            <div className="pt-12 flex flex-col items-center gap-4">
+              <Dialog open={isResumeOpen} onOpenChange={setIsResumeOpen}>
                 <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.9, opacity: 0 }}
-                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                  className="relative w-full max-w-5xl h-[90vh] bg-background rounded-lg overflow-hidden shadow-2xl"
-                  onClick={(e) => e.stopPropagation()}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
                 >
                   <button
-                    onClick={() => setIsResumeOpen(false)}
-                    className="absolute top-4 right-4 z-10 p-2 bg-secondary/90 text-white rounded-full hover:bg-secondary transition-colors"
-                    aria-label="Close"
+                    onClick={() => setIsResumeOpen(true)}
+                    className="inline-flex items-center gap-4 px-10 py-4 bg-primary text-white rounded-full hover:bg-primary/80 transition-all hover:scale-105 font-bold text-sm tracking-widest uppercase shadow-lg shadow-primary/20"
                   >
-                    ✕
+                    View Resume
                   </button>
-                  <iframe
-                    src={aboutData.about.resumeUrl}
-                    className="w-full h-full"
-                    title="Resume PDF Viewer"
-                  />
                 </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+
+                <DialogContent className="min-w-full h-full bg-background/40 backdrop-blur-lg border-white/10 p-0 overflow-hidden flex flex-col shadow-[0_0_100px_-20px_rgba(139,92,246,0.3)]">
+                  <DialogHeader className="p-4 md:p-6 border-b border-white/5 flex flex-row items-center justify-between sm:text-left pr-16">
+                    <div className="flex flex-col gap-1">
+                      <DialogTitle className="text-lg md:text-xl font-bold tracking-tight text-foreground text-left">
+                        Curriculum Vitae
+                      </DialogTitle>
+                      <DialogDescription className="sr-only">
+                        Embedded PDF viewer for Ellexandrei Esponilla&apos;s
+                        resume.
+                      </DialogDescription>
+                      <span className="text-[10px] text-foreground/40 font-mono uppercase tracking-widest text-left">
+                        Ellexandrei Esponilla
+                      </span>
+                    </div>
+                    <a
+                      href={aboutData.about.resumeUrl}
+                      download
+                      className="inline-flex mr-10 items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-full hover:bg-primary/80 transition-all hover:scale-105 font-bold text-[10px] md:text-xs tracking-widest uppercase shadow-lg shadow-primary/30"
+                    >
+                      <IoDownload size={14} />
+                      <span>Download PDF</span>
+                    </a>
+                  </DialogHeader>
+                  <div className="flex-1 w-full bg-[#0a0a0a]">
+                    <iframe
+                      src={`${aboutData.about.resumeUrl}#toolbar=0`}
+                      className="w-full h-full border-none"
+                      title="Resume PDF Viewer"
+                    />
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+          )}
         </div>
       </div>
     </section>

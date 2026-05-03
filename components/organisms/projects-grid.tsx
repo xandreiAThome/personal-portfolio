@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import type { Variants } from "motion/react";
 import { ProjectCard } from "@/components/molecules/project-card";
 import { H2 } from "@/components/atoms/heading";
 import projects from "@/data/projects.json";
@@ -14,7 +15,7 @@ export function ProjectsGrid() {
         staggerChildren: 0.2,
       },
     },
-  };
+  } satisfies Variants;
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -26,7 +27,7 @@ export function ProjectsGrid() {
         ease: "easeOut",
       },
     },
-  };
+  } satisfies Variants;
 
   return (
     <section id="projects" className="py-40 px-6 nebula-bg">
@@ -51,7 +52,7 @@ export function ProjectsGrid() {
           </div>
           <p className="text-foreground/70 text-xl md:text-2xl tracking-tight max-w-3xl mx-auto font-medium leading-relaxed">
             A curated selection of work spanning{" "}
-            <span className="text-primary">design</span>,{" "}
+            <span className="text-violet-600">design</span>,{" "}
             <span className="text-secondary">development</span>, and innovation
             in the digital cosmos.
           </p>

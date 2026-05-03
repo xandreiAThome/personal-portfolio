@@ -7,7 +7,7 @@ interface NavLinkProps {
   href: string;
   label: string;
   active?: boolean;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 export function NavLink({
@@ -23,7 +23,7 @@ export function NavLink({
       className={cn(
         "relative py-1 text-sm font-semibold tracking-tight transition-all duration-300 block",
         "hover:text-primary text-foreground/60",
-        active ? "text-primary" : "text-foreground/60"
+        active ? "text-primary" : "text-foreground/60",
       )}
     >
       {label}
@@ -33,5 +33,3 @@ export function NavLink({
     </Link>
   );
 }
-
-

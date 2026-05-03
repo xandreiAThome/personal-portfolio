@@ -1,17 +1,24 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
+import { Starfield } from "@/components/atoms/starfield";
 import { H1 } from "@/components/atoms/heading";
 import { Subtitle } from "@/components/atoms/text";
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiNodedotjs,
-  SiTailwindcss,
-  SiDocker,
-} from "react-icons/si";
+import { SiReact, SiNodedotjs, SiDocker, SiPytorch } from "react-icons/si";
+import { BiLogoPostgresql } from "react-icons/bi";
+
+const PythonIcon = () => {
+  return (
+    <Image
+      src={"/Python-logo.png"}
+      alt={"python logo"}
+      width={32}
+      height={32}
+      loading="eager"
+    />
+  );
+};
 
 const PLANETS = [
   {
@@ -22,29 +29,29 @@ const PLANETS = [
     delay: 0,
   },
   {
-    icon: SiNextdotjs,
-    color: "#ffffff",
+    icon: SiNodedotjs,
+    color: "#339933",
     radius: "var(--orbit-2)",
     duration: 30,
     delay: -5,
   },
   {
-    icon: SiTypescript,
+    icon: BiLogoPostgresql,
     color: "#3178C6",
     radius: "var(--orbit-3)",
     duration: 40,
     delay: -10,
   },
   {
-    icon: SiTailwindcss,
-    color: "#06B6D4",
+    icon: SiPytorch,
+    color: "#EE4C2C",
     radius: "var(--orbit-4)",
     duration: 50,
     delay: -15,
   },
   {
-    icon: SiNodedotjs,
-    color: "#339933",
+    icon: PythonIcon,
+    color: "#FFFF00",
     radius: "var(--orbit-5)",
     duration: 60,
     delay: -20,
@@ -59,75 +66,12 @@ const PLANETS = [
 ];
 
 export function HeroSection() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const setCanvasSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    setCanvasSize();
-
-    // Draw starfield
-    const stars: Array<{
-      x: number;
-      y: number;
-      radius: number;
-      opacity: number;
-      vx: number;
-      vy: number;
-    }> = [];
-    for (let i = 0; i < 300; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.8,
-        opacity: Math.random() * 0.7 + 0.3,
-        vx: (Math.random() - 0.5) * 0.1,
-        vy: (Math.random() - 0.5) * 0.1,
-      });
-    }
-
-    const animate = () => {
-      ctx.fillStyle = "rgba(6, 6, 6, 1)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      stars.forEach((star) => {
-        star.x += star.vx;
-        star.y += star.vy;
-
-        if (star.x < 0) star.x = canvas.width;
-        if (star.x > canvas.width) star.x = 0;
-        if (star.y < 0) star.y = canvas.height;
-        if (star.y > canvas.height) star.y = 0;
-
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    window.addEventListener("resize", setCanvasSize);
-    return () => window.removeEventListener("resize", setCanvasSize);
-  }, []);
-
   return (
     <section
       id="home"
       className="relative min-h-dvh flex items-center justify-center overflow-hidden nebula-bg"
     >
-      <canvas ref={canvasRef} className="absolute inset-0" />
+      <Starfield className="absolute inset-0" />
 
       {/* Solar System Visuals */}
       <motion.div
@@ -173,19 +117,20 @@ export function HeroSection() {
           {/* Sun (Profile) - Perfectly circular and centered */}
           <div
             className="absolute z-20 w-48 h-48 md:w-56 md:h-56 aspect-square rounded-full overflow-hidden sun-element 
-          border-2 border-white/40 bg-background flex items-center justify-center pointer-events-auto cursor-pointer 
-          hover:scale-110 transition-transform duration-700 shadow-[0_0_100px_var(--primary)] shrink-0"
+          bg-background flex items-center justify-center pointer-events-auto cursor-pointer 
+          hover:scale-110 transition-transform duration-700 shrink-0"
           >
-            <img
+            <Image
               src="/temp.webp"
               alt="Profile"
+              width={224}
+              height={224}
               className="w-full h-full object-cover rounded-full"
-              onError={(e) => {
-                e.currentTarget.src = "https://github.com/shadcn.png";
-              }}
+              priority
             />
             {/* Supernova Overlay */}
-            <div className="absolute inset-0 bg-linear-to-tr from-primary/30 via-accent/10 to-secondary/30 mix-blend-overlay rounded-full" />
+
+            <div className="absolute inset-0 bg-linear-to-tr from-yellow-400/30 via-orange-500/20 to-red-500/30 mix-blend-overlay rounded-full" />
           </div>
         </div>
       </motion.div>
@@ -206,7 +151,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-2xl text-white font-bold mb-6 tracking-tight hero-name"
+            className="text-2xl text-white/90 font-bold mb-6 tracking-wider hero-name"
           >
             Ellexandrei Esponilla
           </motion.div>
@@ -246,7 +191,7 @@ export function HeroSection() {
             <Subtitle className="text-base text-foreground/70 mb-12 max-w-xl mx-auto hero-subtitle font-medium leading-relaxed">
               Crafting high-performance digital experiences at the intersection
               of
-              <span className="text-violet-600 mx-1">Art</span> and{" "}
+              <span className="text-violet-600 mx-1">Creativity</span> and{" "}
               <span className="text-secondary mx-1">Engineering</span>.
             </Subtitle>
           </motion.div>
