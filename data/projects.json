@@ -1,19 +1,11 @@
 [
   {
     "id": "1",
-    "title": "Trip Management System",
-    "description": "Manages and tracks the sales of bus tickets and the position of the bus through GPS and WebSockets for real-time updates.",
-    "image": "/showcase/tms.jpg",
-    "tags": [
-      "WebSockets",
-      "GPS",
-      "Node.js",
-      "Next.js",
-      "TypeScript",
-      "Shadcn",
-      "Tailwind"
-    ],
-    "link": "https://github.com/xandreiAThome/trip-management-system",
+    "title": "Grain Disease Vision Model",
+    "description": "A machine learning project for automated grain disease classification using classical models as a baseline and a finetuned EfficientNetV2-small for the CNN.",
+    "image": "/showcase/grain.png",
+    "tags": ["Python", "CNN", "Pytorch", "Lightning"],
+    "link": "https://github.com/xandreiAThome/grain-disease-vision-model/tree/main",
     "isPrivate": false
   },
   {
@@ -41,6 +33,23 @@
     "image": "/showcase/leap.jpg",
     "tags": ["Next.js", "React", "TypeScript", "Tailwind"],
     "link": "https://github.com/dlsu-lscs/leap25-web",
+    "isPrivate": false
+  },
+  {
+    "id": "5",
+    "title": "Trip Management System",
+    "description": "Manages and tracks the sales of bus tickets and the position of the bus through GPS and WebSockets for real-time updates.",
+    "image": "/showcase/tms.jpg",
+    "tags": [
+      "WebSockets",
+      "GPS",
+      "Node.js",
+      "Next.js",
+      "TypeScript",
+      "Shadcn",
+      "Tailwind"
+    ],
+    "link": "https://github.com/xandreiAThome/trip-management-system",
     "isPrivate": false
   }
 ]

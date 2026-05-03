@@ -24,7 +24,7 @@ async function verifyTurnstile(token: string, ip?: string) {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: params.toString(),
-    }
+    },
   );
 
   return res.json();
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
             error:
               "Please complete the Turnstile captcha verification before submitting",
           },
-          { status: 400 }
+          { status: 400 },
         );
       }
 
@@ -70,18 +70,10 @@ export async function POST(req: Request) {
         // Return Cloudflare's verification response for debugging (temporary)
         return NextResponse.json(
           { error: "Turnstile verification failed", verify: verified },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
-
-    const entry = {
-      name,
-      email,
-      message,
-      createdAt: new Date().toISOString(),
-      ip,
-    };
 
     // Attempt to send an email notification if SMTP is configured
     const SMTP_HOST = process.env.SMTP_HOST;
@@ -103,7 +95,7 @@ export async function POST(req: Request) {
           },
         });
 
-        const mailResult = await transporter.sendMail({
+        await transporter.sendMail({
           from: CONTACT_FROM,
           to: CONTACT_TO,
           subject: `New message from portfolio: ${name}`,
@@ -116,7 +108,7 @@ export async function POST(req: Request) {
         console.error("Error sending contact email:", mailErr);
         return NextResponse.json(
           { error: "Failed to send email" },
-          { status: 500 }
+          { status: 500 },
         );
       }
     }
@@ -125,7 +117,7 @@ export async function POST(req: Request) {
       {
         error: "Email configuration missing",
       },
-      { status: 500 }
+      { status: 500 },
     );
   } catch (err) {
     console.error("/api/contact error:", err);
