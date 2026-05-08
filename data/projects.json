@@ -1,5 +1,14 @@
 [
   {
+    "id": 7,
+    "title": "BetterAllen.org",
+    "description": "An open-source, community-driven LGU portal supporting the BetterGov initiative through transparent and accessible digital public services",
+    "image": "/showcase/betterallen.png",
+    "tags": ["Open Source", "React", "React-Router", "Tailwind"],
+    "link": "https://betterallen.org",
+    "isPrivate": false
+  },
+  {
     "id": "1",
     "title": "Grain Disease Vision Model",
     "description": "A machine learning project for automated grain disease classification using classical models as a baseline and a finetuned EfficientNetV2-small for the CNN.",
